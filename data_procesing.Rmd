@@ -1,0 +1,32 @@
+---
+title: "BIOST579 Data Processing"
+author: "Max Bi"
+date: "2024-04-15"
+output: 
+  pdf_document:
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+load(file = "combined_data_full.Rda")
+# dat = readRDS("combined_data_full.Rda")
+```
+
+```{r}
+# finding treatment column
+# Filter rows where column A has non-NA values
+non_na_rows <- complete.cases(combined_data_full["hrs.day.from.solar"])
+
+# Subset the dataset to include only those rows
+non_na_data <- combined_data_full[non_na_rows, ]
+
+# Find columns with NA and non-NA values in the same positions as column A
+matching_cols <- colnames(non_na_data)[apply(non_na_data, 2, function(x) all(is.na(x)) | all(!is.na(x)))]
+
+# Display the resulting columns
+print(matching_cols)
+
+View(combined_data_full[matching_cols])
+```
+
