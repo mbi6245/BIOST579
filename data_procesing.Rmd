@@ -1,6 +1,6 @@
 ---
 title: "BIOST579 Data Processing"
-author: "Max Bi"
+author: "Max Bi, Ruyue Wang"
 date: "2024-04-15"
 output: 
   pdf_document:
